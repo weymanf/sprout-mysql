@@ -1,0 +1,16 @@
+inherit_from: rubocop-todo.yml
+
+AllCops:
+  Include:
+    - Cheffile
+    - Gemfile
+    - Rakefile
+  Exclude:
+   - cookbooks/**
+   - tmp/**
+
+SingleSpaceBeforeFirstArg:
+  Enabled: false # Useful for more readable alignment of method call args
+
+Blocks:
+  Enabled: false # For multi-line expect { ... }.to blah { ... }
