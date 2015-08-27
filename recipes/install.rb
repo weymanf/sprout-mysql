@@ -33,7 +33,8 @@ ruby_block 'mysql_install_db' do
     active_mysql = Pathname.new('/usr/local/bin/mysql').realpath
     basedir = (active_mysql + '../../').to_s
     data_dir = '/usr/local/var/mysql'
-    system("mysql_install_db --verbose --user=#{node['sprout']['user']} --basedir=#{basedir} --datadir=#{DATA_DIR} --tmpdir=/tmp && chown #{node['sprout']['user']} #{data_dir}") || fail('Failed initializing mysqldb')
+    install_command = "mysql_install_db --verbose --user=#{node['sprout']['user']} --basedir=#{basedir} --datadir=#{DATA_DIR} --tmpdir=/tmp && chown #{node['sprout']['user']} #{data_dir}"
+    system(install_command) || fail('Failed initializing mysqldb')
   end
   not_if { File.exist?('/usr/local/var/mysql/mysql/user.MYD') }
 end
