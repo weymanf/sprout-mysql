@@ -10,7 +10,7 @@ task :foodcritic do
   sh 'foodcritic . -f any -f ~FC048'
 end
 
-Rubocop::RakeTask.new
+RuboCop::RakeTask.new
 
 namespace :spec do
   desc 'Run unit specs (ChefSpec)'

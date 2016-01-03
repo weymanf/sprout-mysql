@@ -1,5 +1,6 @@
-language: objective-c
-rvm: system
+os:
+  - osx
+language: ruby
 install:
   - sudo gem install bundler --no-ri --no-rdoc
   - sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install

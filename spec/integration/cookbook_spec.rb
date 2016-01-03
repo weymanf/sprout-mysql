@@ -3,7 +3,7 @@ require 'timeout'
 
 describe 'sprout-mysql' do
   before :all do
-    expect(system('soloist')).to be_true
+    expect(system('soloist')).to be_truthy
   end
 
   it 'starts mysql' do

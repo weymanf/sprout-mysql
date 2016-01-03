@@ -11,6 +11,3 @@ AllCops:
 
 SingleSpaceBeforeFirstArg:
   Enabled: false # Useful for more readable alignment of method call args
-
-Blocks:
-  Enabled: false # For multi-line expect { ... }.to blah { ... }

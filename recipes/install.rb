@@ -22,17 +22,16 @@ package 'mysql'
 remote_file 'copy mysql plist to ~/Library/LaunchAgents' do
   owner node['sprout']['user']
   path "#{node['sprout']['home']}/Library/LaunchAgents/homebrew.mxcl.mysql.plist"
-  active_mysql = Pathname.new('/usr/local/bin/mysql').realpath
-  plist_location = (active_mysql + '../../' + 'homebrew.mxcl.mysql.plist').to_s
-  source "file://#{plist_location}"
+  source lazy {
+    plist_location = File.join(MysqlHelper.mysql_base_dir, 'homebrew.mxcl.mysql.plist').to_s
+    "file://#{plist_location}"
+  }
 end
 
 ruby_block 'mysql_install_db' do
   block do
-    active_mysql = Pathname.new('/usr/local/bin/mysql').realpath
-    basedir = (active_mysql + '../../').to_s
     data_dir = '/usr/local/var/mysql'
-    install_command = "mysql_install_db --verbose --user=#{node['sprout']['user']} --basedir=#{basedir} --datadir=#{DATA_DIR} --tmpdir=/tmp && chown #{node['sprout']['user']} #{data_dir}"
+    install_command = "mysql_install_db --verbose --user=#{node['sprout']['user']} --basedir=#{MysqlHelper.mysql_base_dir} --datadir=#{DATA_DIR} --tmpdir=/tmp && chown #{node['sprout']['user']} #{data_dir}"
     system(install_command) || fail('Failed initializing mysqldb')
   end
   not_if { File.exist?('/usr/local/var/mysql/mysql/user.MYD') }
