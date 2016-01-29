@@ -8,7 +8,7 @@ PARENT_DATA_DIR = '/usr/local/var'
 
 include_recipe 'homebrew'
 
-["/Users/#{node['sprout']['user']}/Library/LaunchAgents",
+["#{node['sprout']['home']}/Library/LaunchAgents",
  PARENT_DATA_DIR,
  DATA_DIR].each do |dir|
   directory dir do
