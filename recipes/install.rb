@@ -6,7 +6,7 @@ PASSWORD = node['sprout']['mysql']['root_password']
 DATA_DIR = '/usr/local/var/mysql'
 PARENT_DATA_DIR = '/usr/local/var'
 
-include_recipe 'sprout-base::homebrew'
+include_recipe 'homebrew'
 
 ["/Users/#{node['sprout']['user']}/Library/LaunchAgents",
  PARENT_DATA_DIR,
