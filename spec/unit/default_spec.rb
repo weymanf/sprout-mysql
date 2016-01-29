@@ -5,6 +5,7 @@ describe 'sprout-mysql::default' do
 
   before do
     stub_command(/mysql /)
+    stub_command('which git')
   end
 
   it 'includes the install recipe' do

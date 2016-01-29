@@ -5,6 +5,7 @@ describe 'sprout-mysql::install' do
 
   before do
     stub_command(/mysql /)
+    stub_command('which git')
   end
 
   it 'installs mysql' do
